@@ -2,7 +2,7 @@
 include("../db-conection/conexion.php");
 $con=conectar();
 
-$sql="SELECT * FROM nfsom_table";
+$sql="SELECT * FROM Nfsom_Mc";
 
 if (isset($_POST['SEARCH_TEXT']) and $_POST['SEARCH_TEXT']!='') {
     
@@ -11,7 +11,7 @@ if (isset($_POST['SEARCH_TEXT']) and $_POST['SEARCH_TEXT']!='') {
 
     $sql.=" WHERE $SEARCH_TYPE LIKE LOWER('%$SEARCH_TEXT%')";
 }else{
-    $sql.=" WHERE ESTADO != 'CANCELADO'";
+    $sql.=" WHERE ESTADO != 'CANCELADO' AND ESTADO != 'EJECUTADO'";
 }
 
 $query=mysqli_query($con,$sql);

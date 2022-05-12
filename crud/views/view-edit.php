@@ -4,7 +4,7 @@ $con = conectar();
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM nfsom_table WHERE ITEM='$id'";
+$sql = "SELECT * FROM Nfsom_Mc WHERE ITEM='$id'";
 $query = mysqli_query($con,$sql);
 
 $row = mysqli_fetch_array($query);
@@ -40,7 +40,7 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
             <div class="row">
                 <div class="col-sm">
                     <label for="fecha_asignacion" class="text-light form-label">FECHA ASIGNACION</label>
-                    <input id="fecha_asignacion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_DE_ASIGNACION" value="<?php $date = new DateTime($row['FECHA_HORA_DE_ASIGNACION']); echo $date->format('Y-m-d\TH:i'); ?>">
+                    <input id="fecha_asignacion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_DE_ASIGNACION" value="<?php if($row['FECHA_HORA_DE_ASIGNACION'] != ''){$date = new DateTime($row['FECHA_HORA_DE_ASIGNACION']); echo $date->format('Y-m-d\TH:i');} ?>">
                 </div>
                 <div class="col-sm">
                     <label for="ot" class="text-light form-label">OT</label>
@@ -63,7 +63,7 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
             <div class="row">
                 <div class="col-sm">
                     <label for="observacion" class="text-light form-label">TICKET (DESCRIPCION INICIAL)</label>
-                    <textarea id="observacion" type="text" class="form-control mb-4" rows="3" name="OBSERVACION" placeholder="--"><?php echo $row['OBSERVACION'] ?></textarea>
+                    <textarea id="observacion" type="text" class="form-control mb-4" rows="3" name="DESCRIPCION_TICKET" placeholder="--" readonly><?php echo $row['DESCRIPCION_TICKET']?></textarea>
                 </div>
             </div>
 
@@ -109,7 +109,7 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
             <div class="row">
                 <div class="col-sm">
                     <label for="fecha_cancelacion" class="form-label">FECHA CANCELACION</label>
-                    <input id="fecha_cancelacion" type="datetime-local" class="form-control mb-4" name="FECHA_CANCELACION" value="<?php $date = new DateTime($row['FECHA_CANCELACION']); echo $date->format('Y-m-d\TH:i'); ?>">
+                    <input id="fecha_cancelacion" type="datetime-local" class="form-control mb-4" name="FECHA_CANCELACION" value="<?php if($row['FECHA_CANCELACION'] != ''){$date = new DateTime($row['FECHA_CANCELACION']); echo $date->format('Y-m-d\TH:i');} ?>">
                 </div>
                 <div class="col-sm">
                     <label for="field_dispatch" class="form-label">FIELD DISPATCH</label>
@@ -199,11 +199,11 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
             <div class="row">
                 <div class="col-sm">
                     <label for="fecha_inicio_desplazamiento" class="form-label">FECHA / HORA INICIO DESPLAZAMIENTO</label>
-                    <input id="fecha_inicio_desplazamiento" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_INICIO_DESPLAZAMIENTO" value="<?php $date = new DateTime($row['FECHA_HORA_INICIO_DESPLAZAMIENTO']); echo $date->format('Y-m-d\TH:i'); ?>">
+                    <input id="fecha_inicio_desplazamiento" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_INICIO_DESPLAZAMIENTO" value="<?php if($row['FECHA_HORA_INICIO_DESPLAZAMIENTO'] != ''){$date = new DateTime($row['FECHA_HORA_INICIO_DESPLAZAMIENTO']); echo $date->format('Y-m-d\TH:i');} ?>">
                 </div>
                 <div class="col-sm">
                     <label for="fecha_inicio_ejecucion" class="form-label">FECHA / HORA INICIO DE EJECUCION</label>
-                    <input id="fecha_inicio_ejecucion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_INICIO_DE_EJECUCION" value="<?php $date = new DateTime($row['FECHA_HORA_INICIO_DE_EJECUCION']); echo $date->format('Y-m-d\TH:i'); ?>">
+                    <input id="fecha_inicio_ejecucion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_INICIO_DE_EJECUCION" value="<?php if($row['FECHA_HORA_INICIO_DE_EJECUCION'] != ''){$date = new DateTime($row['FECHA_HORA_INICIO_DE_EJECUCION']); echo $date->format('Y-m-d\TH:i');} ?>">
                 </div>
             </div>
 
@@ -219,9 +219,9 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
                 <div class="col-sm">
                     <label for="paradas_reloj" class="form-label">DURACION TOTAL PARADA DE RELOJ (HORAS)</label>
                     <div id="paradas_reloj" class="input-group mb-4">
-                        <input type="number" class="form-control mb-4" name="PARADAS_RELOJ1" placeholder="00" value="<?php echo $DURACION_SEPARADA[0] ?>">
+                        <input type="number" class="form-control mb-4" name="PARADAS_RELOJ1" placeholder="00 hh" value="<?php echo $DURACION_SEPARADA[0] ?>">
                         <span class="input-group-text mb-4">:</span>
-                        <input type="number" min="0" max="59" class="form-control mb-4" name="PARADAS_RELOJ2" placeholder="00" value="<?php echo $DURACION_SEPARADA[1] ?>">
+                        <input type="number" min="0" max="59" class="form-control mb-4" name="PARADAS_RELOJ2" placeholder="00 mm" value="<?php echo $DURACION_SEPARADA[1] ?>">
                     </div>
                 </div>
             </div>
@@ -229,7 +229,7 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
             <div class="row">
                 <div class="col-sm">
                     <label for="fecha_fin_ejecucion" class="form-label">FECHA / HORA FIN DE EJECUCION</label>
-                    <input id="fecha_fin_ejecucion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_FIN_EJECUCION" value="<?php $date = new DateTime($row['FECHA_HORA_FIN_EJECUCION']); echo $date->format('Y-m-d\TH:i'); ?>">
+                    <input id="fecha_fin_ejecucion" type="datetime-local" class="form-control mb-4" name="FECHA_HORA_FIN_EJECUCION" value="<?php if($row['FECHA_HORA_FIN_EJECUCION'] != ''){$date = new DateTime($row['FECHA_HORA_FIN_EJECUCION']); echo $date->format('Y-m-d\TH:i');} ?>">
                 </div>
                 <div class="col-sm">
                     <label for="desplazamiento" class="form-label">SE REQUIRIO DESPLAZAMIENTO?</label>

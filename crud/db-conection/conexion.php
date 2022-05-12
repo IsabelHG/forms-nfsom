@@ -1,6 +1,7 @@
 <?php
 function conectar(){
 
+    $host = 'localhost';
     $server = '173.231.182.168';
     $dbName = 'db_nfsom';
     $username = 'db_nfsom';
