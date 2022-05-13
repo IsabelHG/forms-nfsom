@@ -1,3 +1,5 @@
+/******** RESPONSIVE EDIT ********/
+
 @media (max-width:424px) {
     .p-5, .px-5, .mx-5, .pt-5{
         padding: 1rem !important;
@@ -20,5 +22,13 @@
 @media (min-width:1000px) and (max-width:1199px){
     .col-sm{
         flex: 1 0 25% !important;
+    }
+}
+
+/******** RESPONSIVE TABLE ********/
+
+@media (max-width:424px) {
+    .table-view-responsive{
+        font-size: 12px;
     }
 }

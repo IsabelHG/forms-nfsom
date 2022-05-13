@@ -16,6 +16,8 @@ if (isset($_POST['SEARCH_TEXT']) and $_POST['SEARCH_TEXT']!='') {
 
 $query=mysqli_query($con,$sql);
 
+$rows_total = mysqli_num_rows($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ $query=mysqli_query($con,$sql);
     <!-- Style CSS Files -->
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="table-view-responsive">
     <div class="container m-5 mx-auto">
 
         <form action="view-table.php" method="POST">
@@ -55,7 +57,9 @@ $query=mysqli_query($con,$sql);
             </div>
         </form>
 
-        <table class="table table-striped">
+        <p class="text-primary fw-bold"><?php echo $rows_total?> Filas Encontradas</p>
+
+        <table class="table table-striped table-responsive">
             <thead class="table-dark">
                 <tr>
                     <th>Fecha Asignación</th>
