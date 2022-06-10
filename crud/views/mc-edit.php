@@ -11,6 +11,13 @@ $row = mysqli_fetch_array($query);
 
 $DURACION_TOTAL  = $row['PARADAS_RELOJ'];
 $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
+
+$sqlPersonal1 = "SELECT * FROM `Personal_Ericsson` WHERE estado = 'Activo' AND email != 'despacho02@zitectelco.co' AND email != 'despacho03@zitectelco.co' AND email != 'despacho04@zitectelco.co'";
+$queryTecnico1 = mysqli_query($con,$sqlPersonal1);
+
+$sqlPersonal2 = "SELECT * FROM `Personal_Ericsson` WHERE estado = 'Activo' AND email != 'despacho02@zitectelco.co' AND email != 'despacho03@zitectelco.co' AND email != 'despacho04@zitectelco.co'";
+$queryTecnico2 = mysqli_query($con,$sqlPersonal2);
+
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +37,8 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
 </head>
 <body>
     
-<div class="container my-5">
-    <form action="../sql-query/update.php" method="POST" class="bg-secondary">
+<div class="container-fluid">
+    <form action="../sql-query/mc-update.php" method="POST" class="bg-dark bg-gradient">
 
         <input type="hidden" name="ITEM" value="<?php echo $row['ITEM'] ?>">
 
@@ -128,70 +135,26 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
                     <label for="tecnico_1" class="form-label">TECNICO 1</label>
                     <select id="tecnico_1" class="form-select mb-4" aria-label="select example" name="TECNICO_1">
                         <option selected value="<?php echo $row['TECNICO_1'] ?>"><?php echo $row['TECNICO_1'] ?></option>
-                        <option value="Porterla Afanador Jose">Porterla Afanador Jose</option>
-                        <option value="Ocampo Diaz Carlos Alberto">Ocampo Diaz Carlos Alberto</option>
-                        <option value="Aviles Garcia Nestor Alexander">Aviles Garcia Nestor Alexander</option>
-                        <option value="Tejeda Escobar Adolfo">Tejeda Escobar Adolfo</option>
-                        <option value="Tejada Escobar Fabian">Tejada Escobar Fabian</option>
-                        <option value="Rodriguez Jose Miguel">Rodriguez Jose Miguel</option>
-                        <option value="Bonilla Patiño Oscar">Bonilla Patiño Oscar</option>
-                        <option value="Guarnizo Trujillo Luis Alberto">Guarnizo Trujillo Luis Alberto</option>
-                        <option value="Santafe Cote Jorge Antonio">Santafe Cote Jorge Antonio</option>
-                        <option value="Londoño Juan Carlos">Londoño Juan Carlos</option>
-                        <option value="Correa Ruben Dario">Correa Ruben Dario</option>
-                        <option value="Murillo Asprilla Jesus Antonio">Murillo Asprilla Jesus Antonio</option>
-                        <option value="Alvarez Rober">Alvarez Rober</option>
-                        <option value="Ortega Lopez Fausto">Ortega Lopez Fausto</option>
-                        <option value="Buelvas Berrio Luis Eduardo">Buelvas Berrio Luis Eduardo</option>
-                        <option value="Reino Nieves Fabian Alfredo">Reino Nieves Fabian Alfredo</option>
-                        <option value="Huertas Angelica Yulieth">Huertas Angelica Yulieth</option>
-                        <option value="Tirado Rios Leonel">Tirado Rios Leonel</option>
-                        <option value="Mesa Cristian Bernardo">Mesa Cristian Bernardo</option>
-                        <option value="Agudelo Mora John Alejandro">Agudelo Mora John Alejandro</option>
-                        <option value="Rodríguez Da Silva José">Rodríguez Da Silva José</option>
-                        <option value="Burbano Delgado Jorge Enrique">Burbano Delgado Jorge Enrique</option>
-                        <option value="Ramirez Arango Edgar Joel">Ramirez Arango Edgar Joel</option>
-                        <option value="Castellanos Angelica">Castellanos Angelica</option>
-                        <option value="Valencia Jhon Jairo">Valencia Jhon Jairo</option>
-                        <option value="Montes Hernandez Luis">Montes Hernandez Luis</option>
-                        <option value="Elorza Posada Fabián de Jesús">Elorza Posada Fabián de Jesús</option>
-                        <option value="Silva Jaider Parra">Silva Jaider Parra</option>
-                        <option value="Triana Jiménez Harold Nayid">Triana Jiménez Harold Nayid</option>
+                        <?php
+                            while($rowPersonal = mysqli_fetch_array($queryTecnico1)){
+                        ?>
+                        <option value="<?php echo $rowPersonal['nombre_completo']?>"><?php echo $rowPersonal['nombre_completo']?></option>
+                        <?php
+                            } 
+                        ?>
                     </select>
                 </div>
                 <div class="col-sm">
                     <label for="tecnico_2" class="form-label">TECNICO 2</label>
                     <select id="tecnico_2" class="form-select mb-4" aria-label="select example" name="TECNICO_2">
                         <option selected value="<?php echo $row['TECNICO_2'] ?>"><?php echo $row['TECNICO_2'] ?></option>
-                        <option value="Porterla Afanador Jose">Porterla Afanador Jose</option>
-                        <option value="Ocampo Diaz Carlos Alberto">Ocampo Diaz Carlos Alberto</option>
-                        <option value="Aviles Garcia Nestor Alexander">Aviles Garcia Nestor Alexander</option>
-                        <option value="Tejeda Escobar Adolfo">Tejeda Escobar Adolfo</option>
-                        <option value="Tejada Escobar Fabian">Tejada Escobar Fabian</option>
-                        <option value="Rodriguez Jose Miguel">Rodriguez Jose Miguel</option>
-                        <option value="Bonilla Patiño Oscar">Bonilla Patiño Oscar</option>
-                        <option value="Guarnizo Trujillo Luis Alberto">Guarnizo Trujillo Luis Alberto</option>
-                        <option value="Santafe Cote Jorge Antonio">Santafe Cote Jorge Antonio</option>
-                        <option value="Londoño Juan Carlos">Londoño Juan Carlos</option>
-                        <option value="Correa Ruben Dario">Correa Ruben Dario</option>
-                        <option value="Murillo Asprilla Jesus Antonio">Murillo Asprilla Jesus Antonio</option>
-                        <option value="Alvarez Rober">Alvarez Rober</option>
-                        <option value="Ortega Lopez Fausto">Ortega Lopez Fausto</option>
-                        <option value="Buelvas Berrio Luis Eduardo">Buelvas Berrio Luis Eduardo</option>
-                        <option value="Reino Nieves Fabian Alfredo">Reino Nieves Fabian Alfredo</option>
-                        <option value="Huertas Angelica Yulieth">Huertas Angelica Yulieth</option>
-                        <option value="Tirado Rios Leonel">Tirado Rios Leonel</option>
-                        <option value="Mesa Cristian Bernardo">Mesa Cristian Bernardo</option>
-                        <option value="Agudelo Mora John Alejandro">Agudelo Mora John Alejandro</option>
-                        <option value="Rodríguez Da Silva José">Rodríguez Da Silva José</option>
-                        <option value="Burbano Delgado Jorge Enrique">Burbano Delgado Jorge Enrique</option>
-                        <option value="Ramirez Arango Edgar Joel">Ramirez Arango Edgar Joel</option>
-                        <option value="Castellanos Angelica">Castellanos Angelica</option>
-                        <option value="Valencia Jhon Jairo">Valencia Jhon Jairo</option>
-                        <option value="Montes Hernandez Luis">Montes Hernandez Luis</option>
-                        <option value="Elorza Posada Fabián de Jesús">Elorza Posada Fabián de Jesús</option>
-                        <option value="Silva Jaider Parra">Silva Jaider Parra</option>
-                        <option value="Triana Jiménez Harold Nayid">Triana Jiménez Harold Nayid</option>
+                        <?php
+                            while($rowPersonal = mysqli_fetch_array($queryTecnico2)){
+                        ?>
+                        <option value="<?php echo $rowPersonal['nombre_completo']?>"><?php echo $rowPersonal['nombre_completo']?></option>
+                        <?php
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -276,12 +239,12 @@ $DURACION_SEPARADA = explode(":", $DURACION_TOTAL);
         <div class="row justify-content-center row-buttons-edit">
             <div class="col-auto button-edit">
                 <div class="p-5 text-center">
-                    <a href="view-table.php" class="btn btn-danger" value="Actualizar">CANCELAR</a>
+                    <a href="mc-table.php" class="btn btn-outline-warning" value="Actualizar">CANCELAR</a>
                 </div>
             </div>
             <div class="col-auto button-edit">
                 <div class="p-5 text-center">
-                    <input type="submit" class="btn btn-success" value="GUARDAR">
+                    <input type="submit" class="btn btn-outline-info" value="GUARDAR">
                 </div>
             </div>
         </div>

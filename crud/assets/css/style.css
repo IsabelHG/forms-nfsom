@@ -25,10 +25,14 @@
     }
 }
 
-/******** RESPONSIVE TABLE ********/
+/******** FONT SIZE ********/
+
+.fs-14{
+    font-size: 14px;
+}
 
 @media (max-width:424px) {
-    .table-view-responsive{
+    .fs-14{
         font-size: 12px;
     }
 }
